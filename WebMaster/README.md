@@ -17,7 +17,7 @@ npm install
 2. Start the server:
 
 ```powershell
-node server.js
+node app.js
 ```
 
 Open http://localhost:3000 in your browser and navigate to the Resource Hub or Forum.
@@ -26,5 +26,5 @@ Persistence
 This demo stores data in memory. Restarting the server clears all resources and posts. For production, replace the in-memory arrays with a database (SQLite, PostgreSQL, etc.).
 
 Files changed/added
-- `server.js` — new clean server entrypoint
+- `app.js` — new clean server entrypoint
 - `views/index.ejs`, `views/CHub.ejs`, `views/forum.ejs` — updated UI and forms
