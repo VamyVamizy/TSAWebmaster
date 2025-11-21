@@ -12,6 +12,10 @@ body {
     text-align: center;
 }
 
+h1 {
+    color: rgb(255, 106, 130);
+}
+
 #chub {
     display: inline-block;
     margin-right: 20px;

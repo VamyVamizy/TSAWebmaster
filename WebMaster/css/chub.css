@@ -1,0 +1,82 @@
+body {
+    font-family: monospace, monospace;
+    background-color: #f9f9f9;
+}
+
+#resourceCont {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+#forumlink {
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form {
+    margin-top: 1rem
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: transparent;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.329);
+}
+
+#titleref {
+    color: #4CAF50;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+}
+
+#titleref:hover {
+    background-color: rgb(211, 211, 211);
+}
+
+#home, #forum {
+    margin: 0 10px;
+    text-decoration: none;
+    padding: 10px;
+    color: rgb(255, 106, 130);
+    border: 2px solid rgb(255, 106, 130);
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s all ease;
+}
+
+#forum {
+    color: #008CBA;
+    border: 2px solid #008CBA;
+}
+
+#home:hover {
+    background-color: rgb(255, 106, 130);
+    color: white;
+}
+
+#forum:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+#titletxt {
+    font-size: 1.3rem;
+}
