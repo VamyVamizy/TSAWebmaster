@@ -20,34 +20,24 @@
     </header>
 
     <section>
-        <h2>Start a discussion</h2>
-        <form action="/post" method="post">
+        <h2>Share a resource</h2>
+        <form action="/submit" method="post">
             <div>
-                <label>Your name: <input type="text" name="author" required></label>
+                <label>Title: <input type="text" name="title" required></label>
             </div>
             <div>
-                <label>Message:<br>
-                    <textarea name="message" rows="4" required></textarea>
+                <label>URL: <input type="url" name="url" required placeholder="https://example.com"></label>
+            </div>
+            <div>
+                <label>Description:<br>
+                    <textarea name="description" rows="3"></textarea>
                 </label>
             </div>
             <div>
-                <button type="submit">Post</button>
+                <button type="submit">Submit resource</button>
             </div>
         </form>
-    </section>
-
-    <section>
-        <h2>Recent posts</h2>
-        <% if (posts && posts.length) { %>
-            <% posts.slice().reverse().forEach(function(p){ %>
-                <div class="post">
-                    <strong><%= p.author %></strong> <small><%= new Date(p.createdAt).toLocaleString() %></small>
-                    <p><%= p.message %></p>
-                </div>
-            <% }) %>
-        <% } else { %>
-            <p>No posts yet — start the conversation!</p>
-        <% } %>
+        <p>After submitting, view all resources on the <a href="/chub">Resource Hub</a>.</p>
     </section>
 
 </body>
