@@ -57,6 +57,11 @@ app.get('/forum', (req, res) => {
     res.render('forum');
 });
 
+// surplus page
+app.get('/surplus', (req, res) => {
+    res.render('surplus')
+});
+
 // Submit a new resource
 app.post('/submit', (req, res) => {
     const { title, url, description } = req.body;
