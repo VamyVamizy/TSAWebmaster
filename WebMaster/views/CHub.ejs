@@ -134,7 +134,11 @@
         .then(r => r.json())
         .then(j => {
             if (j.ok) {
-                window.location.href = '/edit/' + id;
+                if (j.admin) {
+                    window.location.href = '/admin';
+                } else {
+                    window.location.href = '/edit/' + id;
+                }
             } else {
                 inputEl.style.borderColor = 'red';
                 setTimeout(() => inputEl.style.borderColor = '', 1200);

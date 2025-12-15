@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const sqlite3 = require('sqlite3').verbose();
 const http = require('http').createServer(app);
@@ -87,15 +88,45 @@ app.post('/submit', (req, res) => {
 }); 
 }); // <-- ADDED: close app.post
 
+// Load admin password from .env (fallback to process.env.admin)
+function loadAdminPassword() {
+    // try process.env first
+    if (process.env && process.env.admin) {
+        return String(process.env.admin).replace(/^\s+|\s+$/g, '').replace(/^['\"]|['\"]$/g, '');
+    }
+    // fallback: read .env in project root
+    try {
+        const envPath = path.join(__dirname, '.env');
+        const data = fs.readFileSync(envPath, 'utf8');
+        const m = data.match(/^\s*admin\s*=\s*(.*)$/m);
+        if (m && m[1]) {
+            return String(m[1]).trim().replace(/^['\"]|['\"]$/g, '');
+        }
+    } catch (e) {
+        // ignore - file may not exist
+    }
+    return '';
+}
+const ADMIN_PASSWORD = loadAdminPassword();
+
 // Verify code for resource; client posts { id, code }
 app.post('/verify-code', (req, res) => {
     const { id, code } = req.body;
     if (!id) return res.status(400).json({ ok: false });
     db.get('SELECT code FROM resources WHERE id = ?', [id], (err, row) => {
         if (err || !row) return res.status(404).json({ ok: false });
-        const match = String(code) === String(row.code);
-        return res.json({ ok: match });
+        const provided = String(code || '').trim();
+        const dbCode = String(row.code || '').trim();
+        const adminPass = String(ADMIN_PASSWORD || '').trim();
+        const adminUsed = !!(adminPass && provided === adminPass);
+        const match = (provided === dbCode) || adminUsed;
+        return res.json({ ok: !!match, admin: !!adminUsed });
     });
+});
+
+// Admin page route
+app.get('/admin', (req, res) => {
+    res.render('admin');
 });
 
 // Render edit page (only if you open it; verification happens before redirect)
