@@ -1,0 +1,12 @@
+<!-- minimal edit page: shows code and allows editing -->
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Edit</title></head>
+<body>
+    <h1>Edit: <%= resource.title %></h1>
+    <form method="POST" action="/edit/<%= resource.id %>">
+        <textarea name="code" rows="20" cols="80"><%= resource.code %></textarea><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

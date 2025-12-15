@@ -31,14 +31,15 @@ ul {
 }
 
 li {
+    position: relative;       /* allow absolute positioning inside each resource */
     margin: 2rem 0;
     padding: 2rem;
+    padding-bottom: 56px;     /* make room for the input at the bottom */
     border: transparent;
     border-radius: 5px;
     background-color: #4CAF50;
     color: white;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.329);
-    /* contain any floated children (like #time) */
     overflow: auto;
 }
 
@@ -145,4 +146,19 @@ li {
     /* move the time to the right side of the list item */
     float: right;
     margin-left: 10px;
+}
+
+/* input placed bottom-right inside each resource box */
+.box-input {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    color: #111;
+    font-size: 0.9rem;
+    max-width: 45%;
+    box-sizing: border-box;
 }
